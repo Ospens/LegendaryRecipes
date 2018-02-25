@@ -8,7 +8,42 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <body ng-app="app">
+      <div class='header'>
+         <ul>
+            <li>
+               <a>
+                  <div>
+                     <img class='logo' src='assets/logo.png'>
+                  </div>
+               </a>
+            </li>
+            <li>
+               <div>
+                  <input id="searchText" type="text" placeholder=" Find a recipe">
+               </div>
+            </li>
+            <li>
+               <a href="">
+                  <div class="nav-search">
+                     <span>
+                     <img alt="search" height="23" src="https://images.media-allrecipes.com/ar-images/icons/NavSearchIcon.svg" width="23">
+                     </span>
+                  </div>
+               </a>
+            </li>
+         </ul>
+         <div class='sign'>
+	        <% if user_signed_in? %>
+	          <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "btn btn-warning link-nav" %>
+	        <% else %>
+	          <%= link_to "Вход", new_user_session_path, class: "btn btn-warning link-nav" %>
+	          <%= link_to "Регистрация", new_user_registration_path, class: "btn btn-warning link-nav" %>
+	         <% end %>
+         </div>
+      </div>
+      <div class='content'>
+         <%= yield %> 
+      </div>
+   </body>
 </html>
