@@ -1,0 +1,56 @@
+- @recipes.each do |category|
+  .title-category
+    %strong= category.first.category
+  .recipes-container
+    - category.each do |recipe|
+      .top-recipes-blocks
+        .image
+          = link_to (image_tag recipe.img, class: 'img-recipe'), recipe_url(recipe.id)
+        .name
+          %strong= recipe.title
+        .description
+          %em
+            = recipe.description
+.recipes-container
+  .top-recipes-blocks
+    .image
+      %img.img-recipe{:src => "assets/shawarma.jpg"}/
+    .name
+      %strong Шаурма
+    .description
+      %em
+        Лишь шаурма! (на углях)
+        Шаурма!
+        Я коснусь тебя...
+        Лишь шаурма! (в Кулебаках)
+        Шаурма! Снова ты и я...
+        Лишь шаурма! (на углях)
+        Лишь шаурма...е-эй...
+  .top-recipes-blocks
+    .image
+      %img.img-recipe{:src => "assets/shawarma.jpg"}/
+    .name
+      %strong Шаурма
+    .description
+      %em
+        Лишь шаурма! (на углях)
+        Шаурма!
+        Я коснусь тебя...
+        Лишь шаурма! (в Кулебаках)
+        Шаурма! Снова ты и я...
+        Лишь шаурма! (на углях)
+        Лишь шаурма...е-эй...
+  .top-recipes-blocks
+    .image
+      %img.img-recipe{:src => "assets/shawarma.jpg"}/
+    .name
+      %strong Шаурма
+    .description
+      %em
+        Лишь шаурма! (на углях)
+        Шаурма!
+        Я коснусь тебя...
+        Лишь шаурма! (в Кулебаках)
+        Шаурма! Снова ты и я...
+        Лишь шаурма! (на углях)
+        Лишь шаурма...е-эй...

@@ -1,7 +1,9 @@
 class RecipesController < ApplicationController
 
   def index
-  	@recipes = Recipe.where(category: 'meat').take(3)
+  	@recipes= []
+  	@recipes << Recipe.where(category: 'Мясо').take(3)
+  	@recipes << Recipe.where(category: 'Салат').take(3)
   end
 
   def show

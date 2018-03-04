@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title LegendaryRecipes
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body{"ng-app" => "app"}
+    .header
+      %ul
+        %li
+          %a
+            %div
+              = link_to (image_tag "logo.png", class: 'logo'), '/'
+        %li
+          %div
+            %input#searchText{:placeholder => " Find a recipe", :type => "text"}/
+        %li
+          %a{:href => ""}
+            .nav-search
+              %span
+                %img{:alt => "search", :height => "23", :src => "https://images.media-allrecipes.com/ar-images/icons/NavSearchIcon.svg", :width => "23"}/
+      .sign
+        - if user_signed_in?
+          = link_to "Выход", destroy_user_session_path, method: :delete, class: "btn btn-warning link-nav"
+        - else
+          = link_to "Вход", new_user_session_path, class: "btn btn-warning link-nav"
+          = link_to "Регистрация", new_user_registration_path, class: "btn btn-warning link-nav"
+    .content
+      = yield
