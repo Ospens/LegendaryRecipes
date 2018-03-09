@@ -1,5 +1,22 @@
-%h1= @recipe.title
-.div
-	= image_tag @recipe.img, class: 'img-recipe-show'
-.div
-	= @recipe.description
+.recipe
+	%h1= @recipe.title
+	%div= image_tag @recipe.img, class: 'img-recipe-show'
+	<hr>
+	.ingredients-header
+		%h3.rec-name Ингридиенты
+		%div.rec-info
+			.time-recieps= "Time: #{@recipe.time}"
+			.count-portion= "Personas: #{@recipe.portion},"
+	<hr>
+	%table.table
+		%thead
+			%tr
+				%th{:scope => "col"} Наименование
+				%th{:scope => "col"} Количество
+		%tbody
+			- @ingredients.each do |ingredient|
+				%tr
+					%td= ingredient.title
+					%td= ingredient.recipes_ingredients.first.quantity 
+	<hr>
+	%div= @recipe.description
