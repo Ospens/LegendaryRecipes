@@ -1,6 +1,6 @@
 - @recipes.each do |category|
   .title-category
-    %strong= category.first.category
+    %strong= category.first.category.name
   .recipes-container
     - category.each do |recipe|
       .top-recipes-blocks

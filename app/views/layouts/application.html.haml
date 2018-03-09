@@ -27,5 +27,9 @@
         - else
           = link_to "Вход", new_user_session_path, class: "btn btn-warning link-nav"
           = link_to "Регистрация", new_user_registration_path, class: "btn btn-warning link-nav"
+    - if current_page?(root_url)
+      .category-recipes
+        = render @categories 
+
     .content
       = yield
