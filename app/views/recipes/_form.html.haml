@@ -1,0 +1,35 @@
+.form
+	= form_for @recipe do |f|
+		.form-group.row
+			= f.label :title, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.text_field :title, class: 'form-control'
+
+		.form-group.row
+			= f.label :description, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.text_area :description, class: 'form-control text-area-description'
+
+		.form-group.row
+			= f.label :img, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.text_field :img, class: 'form-control'
+
+		.form-group.row
+			= f.label :category, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.collection_select :category_id, Category.order(:name), :id, :name, { include_blank: false }, { class: "form-control" }
+
+		.form-group.row
+			= f.label :time, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.text_field :time, class: 'form-control'
+
+		.form-group.row
+			= f.label :portion, class: 'col-sm-2 col-form-label'
+			.col-sm-10
+				= f.text_field :portion, class: 'form-control'
+
+		.form-group
+			<hr>
+			= f.submit 'сохранить', class: 'btn btn-success'
