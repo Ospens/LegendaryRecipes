@@ -7,7 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body{"ng-app" => "app"}
-    .header
+    .header.container-fluid
       %ul
         %li
           %a
@@ -29,8 +29,38 @@
           = link_to "Вход", new_user_session_path, class: "btn btn-warning link-nav"
           = link_to "Регистрация", new_user_registration_path, class: "btn btn-warning link-nav"
     - if current_page?(root_url)
-      .category-recipes
+      .container-fluid.category-recipes
         = render @categories 
 
-    .content
+    .container-fluid.content
+      - if current_page?(root_url)
+        .carousel-container
+          #carouselExampleIndicators.carousel.slide{"data-ride" => "carousel"}
+            %ol.carousel-indicators
+              %li.active{"data-slide-to" => "0", "data-target" => "#carouselExampleIndicators"}
+              %li{"data-slide-to" => "1", "data-target" => "#carouselExampleIndicators"}
+              %li{"data-slide-to" => "2", "data-target" => "#carouselExampleIndicators"}
+            .carousel-inner.rounded
+              .carousel-item.active.img_wrap
+                =image_tag 'shawarma.jpg', class: 'd-block w-100 rounded'
+                .carousel-caption.d-none.d-md-block
+                  %h5 Название
+                  %p Описание
+              .carousel-item.img_wrap
+                =image_tag 'pork.jpg', class: 'd-block w-100 rounded'
+                .carousel-caption.d-none.d-md-block
+                  %h5 Название
+                  %p Описание
+              .carousel-item.img_wrap
+                =image_tag 'olivie.jpg', class: 'd-block w-100 rounded'
+                .carousel-caption.d-none.d-md-block
+                  %h5 Название
+                  %p Описание
+            %a.carousel-control-prev{"data-slide" => "prev", :href => "#carouselExampleIndicators", :role => "button"}
+              %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+              %span.sr-only Previous
+            %a.carousel-control-next{"data-slide" => "next", :href => "#carouselExampleIndicators", :role => "button"}
+              %span.carousel-control-next-icon{"aria-hidden" => "true"}
+              %span.sr-only Next
+
       = yield

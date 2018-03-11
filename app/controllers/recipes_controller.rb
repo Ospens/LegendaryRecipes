@@ -2,8 +2,8 @@ class RecipesController < ApplicationController
 
   def index
   	@recipes = []
-  	@recipes << Recipe.where(category: 1).take(3)
-  	@recipes << Recipe.where(category: 2).take(3)
+  	@recipes << Recipe.where(category: 1).order("RANDOM()").take(3)
+  	@recipes << Recipe.where(category: 2).order("RANDOM()").take(3)
   	@categories = Category.all
   end
 
@@ -41,6 +41,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-		params.require(:recipe).permit(:title, :description, :img, :category_id, :time, :portion)  	
+		params.require(:recipe).permit(:title, :description, :img, :category_id, :time, :portion, :image)  	
   end
 end

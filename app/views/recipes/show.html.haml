@@ -1,6 +1,6 @@
 .recipe
 	%h1= @recipe.title
-	%div= image_tag @recipe&.img || shawarma.jpg, class: 'img-recipe-show'
+	%div= image_tag @recipe.image.url(:large), class: 'img-recipe-show' if @recipe.image?
 	<hr>
 	.ingredients-header
 		%h3.rec-name Ингридиенты
