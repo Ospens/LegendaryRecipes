@@ -26,21 +26,27 @@ class RecipesController < ApplicationController
 	end
 
   def edit
-  	@recipe = Recipe.find(params[:id])  	
+  	@recipe = Recipe.find(params[:id])
   end
 
   def update
   	@recipe = Recipe.find(params[:id])
-  	if  @recipe.update_attributes(recipe_params)  	
+  	if  @recipe.update_attributes(recipe_params)
   		redirect_to @recipe
   	else
   		render :edit
   	end
   end
 
+  def find_recipe
+    @result = Recipe.where('description LIKE ?', "%#{params[:textValue]}%").take(10)
+    render partial: 'result'
+  end
+
   private
 
   def recipe_params
-		params.require(:recipe).permit(:title, :description, :img, :category_id, :time, :portion, :image)  	
+		params.require(:recipe)
+    .permit(:title, :description, :img, :category_id, :time, :portion, :image)
   end
 end

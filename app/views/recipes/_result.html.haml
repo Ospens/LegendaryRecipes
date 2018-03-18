@@ -1,0 +1,7 @@
+- if @result.present?
+  .list-group
+    - @result.each do |recipe|
+      = link_to recipe.title, recipe_path(recipe),
+        class: 'list-group-item list-group-item-action'
+- else
+  .list-group-item.list-group-item-action Нет результатов

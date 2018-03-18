@@ -1,9 +1,9 @@
 .recipe
 	%h1= @recipe.title
+	%div= link_to 'edit', edit_recipe_path(@recipe)
 	%div= image_tag @recipe.image.url(:large), class: 'img-recipe-show' if @recipe.image?
 	<hr>
 	.ingredients-header
-		%h3.rec-name Ингридиенты
 		%div.rec-info
 			.time-recieps= "Time: #{@recipe.time}"
 			.count-portion= "Personas: #{@recipe.portion},"
@@ -17,6 +17,6 @@
 			- @ingredients.each do |ingredient|
 				%tr
 					%td= ingredient.title
-					%td= ingredient.recipes_ingredients.first.quantity 
+					%td= ingredient.recipes_ingredients.first.quantity
 	<hr>
 	%div= @recipe.description

@@ -5,7 +5,8 @@
     - category.each do |recipe|
       .top-recipes-blocks
         .image
-          = link_to (image_tag recipe.image.url(:large), class: 'img-recipe'), recipe_url(recipe.id) if recipe.image?
+          = link_to (image_tag recipe.image.url(:large), class: 'img-recipe'),
+            recipe_url(recipe.id) if recipe.image?
         .name
           %strong= recipe.title
           = link_to 'edit', edit_recipe_path(recipe)
