@@ -15,9 +15,43 @@
  */
  @import "bootstrap";
 
+html {
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(45deg, #ed1c24, #fcee21);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 60s ease infinite;
+  -moz-animation: AnimationName 60s ease infinite;
+  -o-animation: AnimationName 60s ease infinite;
+  animation: AnimationName 60s ease infinite;
+
+  @-webkit-keyframes AnimationName {
+      0%{background-position:96% 0%}
+      50%{background-position:5% 100%}
+      100%{background-position:96% 0%}
+  }
+  @-moz-keyframes AnimationName {
+      0%{background-position:96% 0%}
+      50%{background-position:5% 100%}
+      100%{background-position:96% 0%}
+  }
+  @-o-keyframes AnimationName {
+      0%{background-position:96% 0%}
+      50%{background-position:5% 100%}
+      100%{background-position:96% 0%}
+  }
+  @keyframes AnimationName {
+      0%{background-position:96% 0%}
+      50%{background-position:5% 100%}
+      100%{background-position:96% 0%}
+  }
+}
 .header {
   margin: auto;
-  max-width: 1270px;
+  width: 1230px;
   background: #636363;
   height: 50px;
   margin-top: 30px;
@@ -38,8 +72,8 @@
 }
 
 .content {
-  max-width: 1270px;
-  background-color: #a1b8bf;
+  width: 1230px;
+  background-color: #ffffff;
   margin-top: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -81,9 +115,8 @@
 
 .image {
   overflow: hidden;
-  height: 60%;
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  height: 300px;
   margin: auto;
   max-height: fit-content;
 
@@ -104,9 +137,7 @@
 
 .description {
   overflow: hidden;
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 33%;
+  max-height: 200px;
 }
 
 .recipes-container {
