@@ -1,5 +1,8 @@
 .form
 	= form_for @recipe, html: { multipart: true } do |f|
+		- if @recipe.errors.any?
+			= @recipe.errors.count
+
 		.form-group.row
 			= f.label :title, class: 'col-sm-2 col-form-label'
 			.col-sm-10
@@ -30,6 +33,13 @@
 			.col-sm-10
 				= f.text_field :portion, class: 'form-control'
 
+		.form-group.row
+			%h3.col-sm-2.col-form-label Шаги
+			#tasks.col-sm-10
+				= f.fields_for :steps do |step|
+					= render 'step_fields.html', f: step
+				.links
+					= link_to_add_association 'add steps', f, :steps, class: 'btn btn-success'
 		.form-group
-			<hr>
+
 			= f.submit 'сохранить', class: 'btn btn-success'

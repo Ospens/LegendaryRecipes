@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-
+  before_action :recipe_find, only: [:show, :edit, :destroy, :update]
   def index
   	@recipes = []
   	@recipes << Recipe.where(category: 1).order("RANDOM()").take(3)
@@ -8,7 +8,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-  	@recipe = Recipe.find(params[:id])
   	@ingredients = @recipe.ingredients
   end
 
@@ -19,23 +18,27 @@ class RecipesController < ApplicationController
 	def create
 		@recipe = Recipe.new(recipe_params)
 		if @recipe.save
-			redirect_to @recipe
+			redirect_to @recipe, notice: 'Рецепт успешно создан'
 		else
 			render :new
 		end
 	end
 
   def edit
-  	@recipe = Recipe.find(params[:id])
+
   end
 
   def update
-  	@recipe = Recipe.find(params[:id])
   	if  @recipe.update_attributes(recipe_params)
-  		redirect_to @recipe
+  		redirect_to @recipe, notice: 'Рецепт успешно изменен'
   	else
   		render :edit
   	end
+  end
+
+  def destroy
+    @recipe.destroy
+    redirect_to root_path, notice: 'Рецепт успешно удален'
   end
 
   def find_recipe
@@ -45,8 +48,12 @@ class RecipesController < ApplicationController
 
   private
 
+  def recipe_find
+    @recipe = Recipe.find(params[:id])
+  end
+
   def recipe_params
 		params.require(:recipe)
-    .permit(:title, :description, :img, :category_id, :time, :portion, :image)
+    .permit(:title, :description, :img, :category_id, :time, :portion, :image, ingredients_attributes: [:id, :name, :_destroy], steps_attributes: [:id, :step, :_destroy])
   end
 end

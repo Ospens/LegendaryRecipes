@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311103846) do
+ActiveRecord::Schema.define(version: 20180404183523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20180311103846) do
     t.index ["recipe_id"], name: "index_recipes_ingredients_on_recipe_id"
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.text "step"
+    t.bigint "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_steps_on_recipe_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +72,5 @@ ActiveRecord::Schema.define(version: 20180311103846) do
 
   add_foreign_key "recipes_ingredients", "ingredients"
   add_foreign_key "recipes_ingredients", "recipes"
+  add_foreign_key "steps", "recipes"
 end

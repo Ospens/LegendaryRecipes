@@ -1,13 +1,12 @@
 - @recipes.each do |category|
   .title-category
     %strong= category.first&.category.name
-  .card-deck
+  .row
     - category.each do |recipe|
-      .card
-        .image
-          = link_to (image_tag recipe.image.url(:thumb), class: 'card-img-top'), recipe_url(recipe.id) if recipe.image?
-        .card-body
-          %h5.card-title= recipe.title
-          %p.card-text= truncate(recipe.description, :length => 160)
-        .card-footer
-          %small.text-muted Last updated 3 mins ago
+      .col-md-4
+        .recipe
+          .image-wrapper
+            = link_to (image_tag recipe.image.url(:thumb), class: 'card-img-top'), recipe_url(recipe.id) if recipe.image?
+          .card-body
+            %h5= recipe.title
+            -#%p.card-text= truncate(recipe.description, :length => 160)
