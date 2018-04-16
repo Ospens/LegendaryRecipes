@@ -2,6 +2,8 @@
 	= form_for @recipe, html: { multipart: true } do |f|
 		- if @recipe.errors.any?
 			= @recipe.errors.count
+			- @recipe.errors.full_messages.each do |msg|
+				%li= msg
 
 		.form-group.row
 			= f.label :title, class: 'col-sm-2 col-form-label'
@@ -32,14 +34,23 @@
 			= f.label :portion, class: 'col-sm-2 col-form-label'
 			.col-sm-10
 				= f.text_field :portion, class: 'form-control'
+		.row
+			.col-md-6
+				%h3.col-sm-2.col-form-label Шаги
+				#steps.col-sm-10
+					= f.fields_for :steps do |step|
+						= render 'step_fields.html', f: step
+					.links
+						= link_to_add_association 'add steps', f, :steps, class: 'btn btn-success'
+			.form-group
 
-		.form-group.row
-			%h3.col-sm-2.col-form-label Шаги
-			#tasks.col-sm-10
-				= f.fields_for :steps do |step|
-					= render 'step_fields.html', f: step
-				.links
-					= link_to_add_association 'add steps', f, :steps, class: 'btn btn-success'
-		.form-group
+			.col-md-6
+				%h3.col-sm-2.col-form-label Ингридиенты
+				#ingredients.col-sm-10
+					= f.fields_for :ingredients do |ingredient|
+						= render 'ingredient_fields.html', f: ingredient
+					.links
+						= link_to_add_association 'add ingredient', f, :ingredients, class: 'btn btn-success'
+			.form-group
 
 			= f.submit 'сохранить', class: 'btn btn-success'

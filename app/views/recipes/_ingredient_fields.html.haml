@@ -1,0 +1,7 @@
+.form-inline.clearfix.form-group
+  .nested-fields
+    = f.text_field :title,  class: 'form-input form-control'
+    - a = f.object.recipes_ingredients.exists? ? :recipes_ingredients : f.object.recipes_ingredients.build
+    = f.fields_for :recipes_ingredients, a do |i|
+      = i.text_field :quantity,  class: 'form-input form-control'
+    = link_to_remove_association "Remove ingred", f, class: "btn btn-danger"

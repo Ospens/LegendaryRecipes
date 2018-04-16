@@ -2,8 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin box-shadow {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+  box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+}
+
+$red: #DB6161;
+
 .img-recipe-show {
-	width: 600px;
+	max-width: 100%;
+  border-radius: 5px;
+  @include box-shadow;
 }
 
 .time-recieps {
@@ -26,7 +36,7 @@
 }
 
 .recipe {
-	margin: 20px;
+	padding: 30px 0 50px 0;
 }
 
 .form {
@@ -41,4 +51,16 @@
 	position: absolute;
   width: 250px;
   margin-top: -5px;
+}
+
+#recipe_top {
+  margin-bottom: 50px;
+}
+
+#steps, #ingredients {
+  background: white;
+  @include box-shadow;
+  min-height: 360px;
+  border-radius: 5px;
+  padding: 2em 8%;
 }

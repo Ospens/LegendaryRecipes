@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-  	if  @recipe.update_attributes(recipe_params)
+    if  @recipe.update_attributes(recipe_params)
   		redirect_to @recipe, notice: 'Рецепт успешно изменен'
   	else
   		render :edit
@@ -54,6 +54,14 @@ class RecipesController < ApplicationController
 
   def recipe_params
 		params.require(:recipe)
-    .permit(:title, :description, :img, :category_id, :time, :portion, :image, ingredients_attributes: [:id, :name, :_destroy], steps_attributes: [:id, :step, :_destroy])
+    .permit(:title,
+            :description,
+            :img,
+            :category_id,
+            :time,
+            :portion,
+            :image,
+            ingredients_attributes: [:id, :title, :_destroy, recipes_ingredients_attributes: [:id, :quantity]],
+            steps_attributes: [:id, :step, :_destroy])
   end
 end

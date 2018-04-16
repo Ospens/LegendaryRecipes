@@ -1,22 +1,31 @@
 .recipe
-	%h1= @recipe.title
-	%div= link_to 'edit', edit_recipe_path(@recipe)
-	%div= image_tag @recipe.image.url(:large), class: 'img-recipe-show' if @recipe.image?
-	<hr>
-	.ingredients-header
-		%div.rec-info
-			.time-recieps= "Time: #{@recipe.time}"
-			.count-portion= "Personas: #{@recipe.portion},"
-	<hr>
-	%table.table
-		%thead
-			%tr
-				%th{:scope => "col"} Наименование
-				%th{:scope => "col"} Количество
-		%tbody
-			- @ingredients.each do |ingredient|
-				%tr
-					%td= ingredient.title
-					%td= ingredient.recipes_ingredients.first.quantity
-	<hr>
-	%div= @recipe.description
+	#recipe_top.row
+		.col-md-4
+			= image_tag @recipe.image.url(:large), class: 'img-recipe-show' if @recipe.image?
+		.col-md-8
+			#recipe_info
+				%h1= @recipe.title
+				%p.description= @recipe.description
+				%p
+					Submitted by
+					= '@recipe.user.email'
+
+			.ingredients-header
+				%div.rec-info
+					.time-recieps= "Time: #{@recipe.time}"
+					.count-portion= "Personas: #{@recipe.portion},"
+	.row
+		.col-md-6
+			#steps
+				%h2 Шаги
+				%ul
+					- @recipe.steps.each do |step|
+						%li= step.step
+		.col-md-6
+			#ingredients
+				%h2 Ингридиенты
+				%ul
+					- @ingredients.each do |ingredient|
+						%tr
+							%td= ingredient.title
+							%td= ingredient.recipes_ingredients.first.quantity
