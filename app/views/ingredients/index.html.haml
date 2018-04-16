@@ -1,0 +1,16 @@
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th{:scope => "col"}= link_to 'Добавить ингредиент', new_ingredient_path, class: 'badge badge-primary'
+      %th{:scope => "col"} Белки
+      %th{:scope => "col"} Жиры
+      %th{:scope => "col"} Углеводы
+      %th{:scope => "col"} Ккал
+  %tbody
+    - @ingredients.each do |ingred|
+      %tr
+        %th{:scope => "row"}= link_to ingred.title, edit_ingredient_path(ingred), class: 'btn btn-link'
+        %td= ingred.proteins
+        %td= ingred.carbohydrates
+        %td= ingred.fats
+        %td= ingred.calories

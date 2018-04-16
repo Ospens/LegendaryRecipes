@@ -1,0 +1,33 @@
+.form
+  = form_for @ingredient, html: { multipart: true } do |f|
+    - if @ingredient.errors.any?
+      = @ingredient.errors.count
+      - @ingredient.errors.full_messages.each do |msg|
+        %li= msg
+
+    .form-group.row
+      = f.label :title, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.text_field :title, class: 'form-control'
+
+    .form-group.row
+      = f.label :proteins, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.text_field :proteins, class: 'form-control'
+
+    .form-group.row
+      = f.label :fats, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.text_field :fats, class: 'form-control'
+
+    .form-group.row
+      = f.label :carbohydrates, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.text_field :carbohydrates, class: 'form-control'
+
+    .form-group.row
+      = f.label :calories, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.text_field :calories, class: 'form-control'
+
+      = f.submit 'Сохранить', class: 'btn btn-success'

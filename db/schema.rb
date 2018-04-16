@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20180414170815) do
   create_table "ingredients", force: :cascade do |t|
     t.string "title"
     t.string "ingred_class"
-    t.integer "proteins"
-    t.integer "fats"
-    t.integer "carbohydrates"
-    t.integer "calories"
+    t.float "proteins"
+    t.float "fats"
+    t.float "carbohydrates"
+    t.float "calories"
   end
 
   create_table "recipes", force: :cascade do |t|
